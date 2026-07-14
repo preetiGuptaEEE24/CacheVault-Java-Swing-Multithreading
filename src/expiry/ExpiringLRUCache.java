@@ -8,17 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Adds TTL (time-to-live) expiry on top of the plain LRUCache.
- *
- * Two expiry strategies are combined, which is the same trade-off
- * real caches like Redis make:
- *  - LAZY expiry: checked every time get() is called, so a stale read
- *    never slips through even if the sweeper hasn't run yet.
- *  - ACTIVE expiry: a background thread sweeps periodically to remove
- *    expired entries that are never touched again (otherwise they'd
- *    sit in memory forever, never triggering a lazy check).
- */
+
 public class ExpiringLRUCache<K, V> {
 
     private final LRUCache<K, CacheEntry<V>> cache;
