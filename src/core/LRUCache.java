@@ -11,8 +11,7 @@ public class LRUCache<K, V> {
     private final int capacity;
     private final Map<K, Node<K, V>> map;
 
-    // Dummy sentinel nodes remove all the "is this the first/last node?"
-    // edge cases from the linking logic below.
+    
     private final Node<K, V> head;
     private final Node<K, V> tail;
 
@@ -35,8 +34,7 @@ public class LRUCache<K, V> {
         return node.value;
     }
 
-    /** Look up a value WITHOUT affecting recency order. Used internally
-     *  by things like the TTL sweeper that shouldn't skew LRU order. */
+
     public synchronized V peek(K key) {
         Node<K, V> node = map.get(key);
         return node == null ? null : node.value;
@@ -74,7 +72,6 @@ public class LRUCache<K, V> {
         return map.size();
     }
 
-    /** Returns keys ordered from most-recently-used to least-recently-used. */
     public synchronized List<K> keysInRecencyOrder() {
         List<K> keys = new ArrayList<>();
         Node<K, V> current = head.next;
