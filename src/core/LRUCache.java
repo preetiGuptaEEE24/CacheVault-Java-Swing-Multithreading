@@ -5,19 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A capacity-bound cache that evicts the Least Recently Used entry
- * once full. Both get() and put() run in O(1) time.
- *
- * How it works:
- *  - A HashMap<K, Node<K,V>> gives O(1) lookup by key.
- *  - A doubly linked list keeps entries ordered by recency:
- *    head side = most recently used, tail side = least recently used.
- *  - Because the HashMap gives a direct pointer to a node, moving that
- *    node to the front (on access) or unlinking it (on eviction) doesn't
- *    require scanning anything — just pointer rewiring. That's what
- *    makes both operations O(1) instead of O(n).
- */
+
 public class LRUCache<K, V> {
 
     private final int capacity;
